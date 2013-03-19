@@ -17,13 +17,15 @@ import javax.swing.*;
  *   |   |	  | All text, buttons and graphics go on this pane	|	
  *    ---|	  |		(contains all visible components of root)								 		    |	
  *       |	  |										 		  	|	
- *        ----| 												|
- * 			  | 												|
+ *        ----| Content pane can be accessed directly, but  	|
+ * 			  | better to use a JPanel as a layer on top of it. |
  *             -------------------------------------------------
  *               
  *               AND A GLASS PANE OVER ALL 
  *               
  */
+
+
 public class JFramesTest {
 	private static void createAndShowGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
