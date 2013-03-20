@@ -40,7 +40,7 @@ public class JPanelTests {
         // We set the Layout Manager to null so we can manually place the Panels.
         totalGUI.setLayout(null);
         
-        //Set the background color 
+        //Set the background colour of the holding panel
         totalGUI.setBackground(Color.DARK_GRAY);
         
         // Now we create a new panel, size it, shape it,color it red.
@@ -65,8 +65,8 @@ public class JPanelTests {
          *    	|	+--------------------------JPanel totalGUI--------------------------+	|
          *    	| 																			|
          * 		+--------------------------JFrame frame ------------------------------------+
-         */
-         
+	         */
+	         
         JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.red);
         redPanel.setLocation(10, 10);

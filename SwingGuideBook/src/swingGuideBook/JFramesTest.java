@@ -26,8 +26,8 @@ import javax.swing.*;
  */
 
 
-public class JFramesTest {
-	private static void createAndShowGUI() {
+	public class JFramesTest {
+		private static void createAndShowGUI() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("[=] Hello World [=]");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
