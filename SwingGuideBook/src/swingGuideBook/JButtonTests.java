@@ -13,10 +13,11 @@ public class JButtonTests implements ActionListener {
 	
 	int redScoreAmount = 0;
 	int blueScoreAmount = 0;
+	int yellowScoreAmount = 0;
 	
 	JPanel 	titlePanel,scorePanel,buttonPanel;
-	JLabel 	redLabel,blueLabel,redScore,blueScore;
-	JButton redButton,blueButton,resetButton;
+	JLabel 	yellowLabel,redLabel,blueLabel,redScore,blueScore,yellowScore;
+	JButton yellowButton,redButton,blueButton,resetButton;
 	
 	public JPanel createContentPane () {
 		//place all components on this JPanel
@@ -27,43 +28,48 @@ public class JButtonTests implements ActionListener {
 		titlePanel = new JPanel();
 		titlePanel.setLayout(null);
 		titlePanel.setLocation(10,0);
-		titlePanel.setSize(250,30);
+		titlePanel.setSize(410,30);
 		totalGUI.add(titlePanel);
 		
 		//place two labels on the titlePanel
 		redLabel = new JLabel("Red Team");
 		redLabel.setLocation(0,0);
-		redLabel.setSize(100,30);
+		redLabel.setSize(120,30);
 		redLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		redLabel.setForeground(Color.red);
+		//redLabel.setForeground(Color.red);
+		//redLabel.setBackground(Color.black);
+		redLabel.setOpaque(true);
 		titlePanel.add(redLabel);
 		
 		blueLabel = new JLabel("Blue Team");
-		blueLabel.setLocation(120,0);
-		blueLabel.setSize(100,30);
+		blueLabel.setLocation(130,0);
+		blueLabel.setSize(120,30);
 		blueLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		blueLabel.setForeground(Color.blue);
+		//blueLabel.setForeground(Color.blue);
+		//blueLabel.setBackground(Color.black);
+		blueLabel.setOpaque(true);
 		titlePanel.add(blueLabel);
+		
+		yellowLabel = new JLabel("Yellow Team");
+		yellowLabel.setLocation(260,0);
+		yellowLabel.setSize(120,30);
+		yellowLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		//yellowLabel.setForeground(Color.yellow);
+		//yellowLabel.setBackground(Color.black);
+		yellowLabel.setOpaque(true);
+		titlePanel.add(yellowLabel);
 		
 		//Build a panel to hold score labels
 		scorePanel = new JPanel();
 		scorePanel.setLayout(null);
 		scorePanel.setLocation(10,40);
-		scorePanel.setSize(250,30);
+		scorePanel.setSize(400,30);
 		totalGUI.add(scorePanel);
 		
 		redScore = new JLabel("" + redScoreAmount);
 		redScore.setLocation(0,0);
 		redScore.setSize(120,30);
 		redScore.setHorizontalAlignment(SwingConstants.CENTER);
-		redScore.setBackground(Color.red);
-		try {
-			redScore.wait(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		redScore.setBackground(Color.blue);
 		scorePanel.add(redScore);
 		
 		blueScore = new JLabel("" + blueScoreAmount);
@@ -72,11 +78,17 @@ public class JButtonTests implements ActionListener {
 		blueScore.setHorizontalAlignment(SwingConstants.CENTER);
 		scorePanel.add(blueScore);
 		
+		yellowScore = new JLabel("" + yellowScoreAmount);
+		yellowScore.setLocation(260,0);
+		yellowScore.setSize(120,30);
+		yellowScore.setHorizontalAlignment(SwingConstants.CENTER);
+		scorePanel.add(yellowScore);
+		
 		//create a JPanel to contain all the JButtons.
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
 		buttonPanel.setLocation(10,80);
-		buttonPanel.setSize(260,70);
+		buttonPanel.setSize(400,70);
 		totalGUI.add(buttonPanel);
 		
 		//create a button and manipulate
@@ -92,9 +104,15 @@ public class JButtonTests implements ActionListener {
 		blueButton.addActionListener(this);
 		buttonPanel.add(blueButton);
 		
+		yellowButton = new JButton("Yellow Score");
+		yellowButton.setLocation(260,0);
+		yellowButton.setSize(120,30);
+		yellowButton.addActionListener(this);
+		buttonPanel.add(yellowButton);
+		
 		resetButton = new JButton("Reset Score");
 		resetButton.setLocation(0,40);
-		resetButton.setSize(250,30);
+		resetButton.setSize(380,30);
 		resetButton.addActionListener(this);
 		buttonPanel.add(resetButton);
 		
@@ -110,7 +128,7 @@ public class JButtonTests implements ActionListener {
 		frame.setContentPane(demo.createContentPane());
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(280,190);
+		frame.setSize(410,190);
 		frame.setVisible(true);
 	}
 	
@@ -123,11 +141,17 @@ public class JButtonTests implements ActionListener {
 			blueScoreAmount++;
 			blueScore.setText("" + blueScoreAmount);
 		}
+		else if(e.getSource() == yellowButton) {
+			yellowScoreAmount +=3;
+			yellowScore.setText("" + yellowScoreAmount);
+		}
 		else if(e.getSource() == resetButton) {
 			redScoreAmount = 0;
 			blueScoreAmount = 0;
+			yellowScoreAmount = 0;
 			redScore.setText("" + redScoreAmount);
 			blueScore.setText("" + blueScoreAmount);
+			yellowScore.setText("" + blueScoreAmount);
 		}
 	}
 
