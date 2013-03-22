@@ -3,11 +3,13 @@ package swingGuideBook;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -16,8 +18,9 @@ public class JTextFieldExamples implements  ActionListener{
 
     JPanel textPanel, panelForTextFields, completionPanel;
     JLabel titleLabel, usernameLabel, passwordLabel, userLabel, passLabel;
-    JTextField usernameField, loginField;
+    JTextField usernameField;
     JButton loginButton;
+    JPasswordField loginField;
 
     public JPanel createContentPane (){
 
@@ -66,8 +69,10 @@ public class JTextFieldExamples implements  ActionListener{
         panelForTextFields.add(usernameField);
 
         // Login Textfield
-        loginField = new JTextField(8);
-        loginField.setLocation(0, 40);
+        //loginField = new JTextField(8);
+        loginField = new JPasswordField(8);
+        loginField.setEchoChar('*');
+        loginField.setLocation(0,40);
         loginField.setSize(100, 30);
         panelForTextFields.add(loginField);
 
@@ -124,17 +129,30 @@ public class JTextFieldExamples implements  ActionListener{
                 userLabel.setForeground(Color.red);
                 userLabel.setText("Wrong!");
             }
+            
+	    	char answer[] = {'I','n','g','e','r','s','0','l','l'};
+	    	char input[] = loginField.getPassword();
+	    	
+	    	if(Arrays.equals(input, answer)) {
+	    		passLabel.setForeground(Color.green);
+	    		passLabel.setText("Correct");
+	    		for(int i=0;i<input.length;i++) {
+	    			input[i] = ' ';
+	    		}
+	    	}
 
+	    	/*
             if(loginField.getText().trim().compareTo("Ingers0ll") == 0)
             {
                 passLabel.setForeground(Color.green);
                 passLabel.setText("Correct!");
-            }
+            } */
             else
             {
                 passLabel.setForeground(Color.red);
                 passLabel.setText("Wrong!");
             }
+            
 
             if((userLabel.getForeground() == Color.green) 
 			&& (passLabel.getForeground() == Color.green))
