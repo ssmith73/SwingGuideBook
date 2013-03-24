@@ -290,7 +290,9 @@ package swingGuideBook;
 	            // If it isn't, the string is not entered.
 
 	            if (!((getLength() + str.length()) > maxlength)) {
-	                super.insertString(offset, str, a);
+	            	System.out.println(str);
+	            	if(!( (str.contains("B")) | (str.contains("b")) | (str.contains("o")) ))
+	                	super.insertString(offset, str, a);
 	            }
 	        }
 	    }
