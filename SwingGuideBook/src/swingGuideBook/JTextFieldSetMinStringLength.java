@@ -51,7 +51,8 @@ package swingGuideBook;
 	    JPanel textPanel, panelForTextFields, completionPanel;
 	    JLabel titleLabel, usernameLabel, passwordLabel, userLabel, passLabel;
 	    KTextField usernameField;
-	    JPasswordField loginField;
+	    //JPasswordField loginField;
+	    KJPasswordField loginField;
 	    JButton loginButton;
 
 	    public JPanel createContentPane (){
@@ -101,7 +102,7 @@ package swingGuideBook;
 	        panelForTextFields.add(usernameField);
 
 	        // Login Textfield
-	        loginField = new JPasswordField(8);
+	        loginField = new KJPasswordField(8);
 	        loginField.setEchoChar('&');
 	        loginField.setLocation(0, 40);
 	        loginField.setSize(100, 30);
@@ -264,6 +265,50 @@ package swingGuideBook;
 	            super(new FixedLengthPlainDocument(length), "", length);
 	        }
 	    }
+	    
+	    class KJPasswordField extends JPasswordField {
+
+			private static final long serialVersionUID = 1L;
+			private int length = 0;
+
+			/* Constructor for KTextField, requires a single integer argument
+	         * Creates a TextField with a fixed length of string input.
+			 * Constructor does the following
+			 * 
+			 * ---->>>>super() accesses the class that has been extended <<<<<------
+			 * 
+			 * relevant constructor for JTextField (the one that has 3 arguments)
+			 * JTextField(Document doc, String text, int columns)
+			 * 
+			 * Constructs a new JTextField that uses the given text storage model and the given number of colum
+			 * 
+			 * public JTextField(Document doc, String text, int columns)
+			 * 
+			 * Constructs a new JTextField that uses the given text storage model 
+			 * and the given number of columns. This is the constructor through which 
+			 * the other constructors feed. If the document is null, a default model 
+			 * is created.
+			 * 
+			 * Parameters:
+			 * doc - the text storage to use; if this is null, a default will be 
+			 * provided by calling the createDefaultModel method
+			 * text - the initial string to display, or null
+			 * columns - the number of columns to use to calculate the preferred 
+			 * width >= 0; if columns is set to zero, the preferred width will 
+			 * be whatever naturally results from the component implementation
+			 * Throws: IllegalArgumentException - if columns < 0
+			 *
+			 * 1: build a fixedLengthPlainDocument object with argument = length
+			 * 2: passes in 3 arguments to the constructor of the JTextField
+			 * 		the doc type, a string, and the length
+			 *      the doc type is also passed the maxlength of the string
+			 *      allowed.
+			 * 
+			 */
+	        public KJPasswordField(int length) {
+	            super(new MinLengthPlainDocument(length), "", length);
+	        }
+	    }
 
 	    class FixedLengthPlainDocument extends PlainDocument {
 
@@ -290,6 +335,38 @@ package swingGuideBook;
 	            // If it isn't, the string is not entered.
 
 	            if (!((getLength() + str.length()) > maxlength)) {
+	                super.insertString(offset, str, a);
+	            	System.out.println("doneiiiiiiii");
+	            }
+	        }
+	    }
+	    
+	    class MinLengthPlainDocument extends PlainDocument {
+
+			private static final long serialVersionUID = 2L;
+			private int minlength;
+
+			// Constructor for FixedLengthPlainDocument
+	        // creates a Plain Document with a maximum length called maxlength.
+	        MinLengthPlainDocument(int minlength) {
+	            this.minlength = minlength;
+	        }
+
+	        // This is the method used to insert a string to a Plain Document.
+	        //insertString is a child method of document.PlainDocument
+	        //here we override it to add the stringlenght functionality
+	        public void insertString(int offset, String str, AttributeSet a) throws
+	                BadLocationException {
+
+	            // If the current length of the string
+	            // + the length of the string about to be entered
+	            // (through typing or copy and paste)
+	            // is less than the maximum length passed as an argument..
+	            // We call the Plain Document method insertString.
+	            // If it isn't, the string is not entered.
+
+	            if (((getLength() + str.length()) <= minlength)) {
+	            	System.out.println("done");
 	                super.insertString(offset, str, a);
 	            }
 	        }
