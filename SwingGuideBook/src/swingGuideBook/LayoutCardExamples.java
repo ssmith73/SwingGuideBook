@@ -50,6 +50,7 @@ public class LayoutCardExamples implements  ActionListener{
         buttonPanel.add(nextButton);
         buttonPanel.add(Box.createRigidArea(new Dimension(10,0)));
         
+        
         // Now we need to create three demonstration panels to show
         // the various ways we can align panels in a BoxLayout.
         // To make this a bit quicker, we've created a method called
@@ -94,6 +95,8 @@ public class LayoutCardExamples implements  ActionListener{
 
         // This is the important bit of this application.
         // We use a JPanel with a cardPanel, and add the three panels in order.
+        // Each of these 3 panels, holds two other panels with the aligned 
+        // coloured squares on them.
         // Note that we have to instantiate this Panel outside of this method
         // so the ActionListener can change it on a buttons command.
         
