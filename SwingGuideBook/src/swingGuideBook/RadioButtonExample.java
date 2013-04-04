@@ -102,6 +102,7 @@ public class RadioButtonExample implements  ActionListener{
         mainPanel_3.add(yellow_3);
         
         // We create the CardPanel and give it plenty of padding.
+        //arguments, hgap,vgap
         
         cardPanel = new JPanel(new CardLayout(50, 50));
         
